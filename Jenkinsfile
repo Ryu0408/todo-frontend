@@ -7,7 +7,7 @@ pipeline {
 
   environment {
     SSH_TARGET = "ubuntu@43.200.12.227"
-    SSH_KEY_ID = "ec2-ssh"
+    SSH_KEY_ID = "enkins-todo-frontend-key"
     PROJECT_DIR = "/home/ubuntu/apps"
     FRONTEND_DIR = "$PROJECT_DIR/todo-frontend"
   }
