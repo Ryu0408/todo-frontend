@@ -1,2 +1,2 @@
 # README
-1. JENKINS 테스트 중123
+1. JENKINS 테스트 중
