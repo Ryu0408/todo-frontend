@@ -43,14 +43,11 @@ pipeline {
               echo "[2] 📦 docker-compose 실행 디렉토리 이동"
               cd $PROJECT_DIR
 
-              echo "[3] 🧹 docker-compose down"
-              docker-compose down
+              echo "[3] 🛠️ docker-compose build frontend"
+              docker-compose build frontend
 
-              echo "[4] 🛠️ docker-compose build"
-              docker-compose build
-
-              echo "[5] 🚀 docker-compose up -d"
-              docker-compose up -d
+              echo "[4] ♻️ docker-compose restart frontend"
+              docker-compose restart frontend
             '
           """
         }
