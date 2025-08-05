@@ -1,3 +1,5 @@
+import groovy.json.JsonOutput
+
 pipeline {
   agent any
 
@@ -10,7 +12,7 @@ pipeline {
     SSH_KEY_ID = "enkins-todo-frontend-key"
     PROJECT_DIR = "/home/ubuntu/apps"
     FRONTEND_DIR = "$PROJECT_DIR/todo-frontend"
-    SLACK_WEBHOOK = credentials('SLACK_WEBHOOK')
+    SLACK_WEBHOOK = credentials('SLACK_WEBHOOK') // Jenkins Credentials에 등록된 Secret Text
   }
 
   stages {
@@ -59,24 +61,24 @@ pipeline {
   post {
     success {
       script {
-        def payload = """{
-          "attachments": [
-            {
-              "color": "good",
-              "title": "✅ todo-frontend 배포 성공!",
-              "text": "코드가 성공적으로 배포되었습니다 🚀",
-              "footer": "Jenkins",
-              "ts": ${System.currentTimeMillis() / 1000}
-            }
+        def payload = [
+          attachments: [
+            [
+              color : "good",
+              title : "✅ todo-frontend 배포 성공!",
+              text  : "코드가 성공적으로 배포되었습니다 🚀",
+              footer: "Jenkins",
+              ts    : (System.currentTimeMillis() / 1000).toLong()
+            ]
           ]
-        }"""
+        ]
 
         httpRequest(
           httpMode: 'POST',
           contentType: 'APPLICATION_JSON',
           customHeaders: [[name: 'User-Agent', value: 'curl/7.68.0']],
           validResponseCodes: '100:599',
-          requestBody: payload,
+          requestBody: JsonOutput.toJson(payload),
           url: "${env.SLACK_WEBHOOK}"
         )
       }
@@ -84,24 +86,24 @@ pipeline {
 
     failure {
       script {
-        def payload = """{
-          "attachments": [
-            {
-              "color": "danger",
-              "title": "❌ todo-frontend 배포 실패!",
-              "text": "배포 중 문제가 발생했습니다. 콘솔 로그를 확인하세요.",
-              "footer": "Jenkins",
-              "ts": ${System.currentTimeMillis() / 1000}
-            }
+        def payload = [
+          attachments: [
+            [
+              color : "danger",
+              title : "❌ todo-frontend 배포 실패!",
+              text  : "배포 중 문제가 발생했습니다. 콘솔 로그를 확인하세요.",
+              footer: "Jenkins",
+              ts    : (System.currentTimeMillis() / 1000).toLong()
+            ]
           ]
-        }"""
+        ]
 
         httpRequest(
           httpMode: 'POST',
           contentType: 'APPLICATION_JSON',
           customHeaders: [[name: 'User-Agent', value: 'curl/7.68.0']],
           validResponseCodes: '100:599',
-          requestBody: payload,
+          requestBody: JsonOutput.toJson(payload),
           url: "${env.SLACK_WEBHOOK}"
         )
       }
