@@ -13,6 +13,21 @@ pipeline {
   }
 
   stages {
+    stage('Test todo-frontend') {
+      steps {
+        sshagent(credentials: [SSH_KEY_ID]) {
+          sh """
+            ssh -o StrictHostKeyChecking=no $SSH_TARGET '
+              cd $FRONTEND_DIR &&
+              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작" &&
+              npm install &&
+              npm run lint || exit 1
+            '
+          """
+        }
+      }
+    }
+
     stage('Deploy todo-frontend only') {
       steps {
         sshagent(credentials: [SSH_KEY_ID]) {
