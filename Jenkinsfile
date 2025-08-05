@@ -22,7 +22,7 @@ pipeline {
           sh """
             ssh -o StrictHostKeyChecking=no $SSH_TARGET '
               cd $FRONTEND_DIR &&
-              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작123" &&
+              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작" &&
               npm install &&
               npm run lint || exit 1
             '
@@ -63,7 +63,7 @@ pipeline {
       script {
         def payload = [
           username: "Jenkins Todo Notifier",
-          text: "✅ todo-frontend 배포 성공!\n코드가 성공적으로 배포되었습니다 🚀"
+          text: "✅ todo-frontend 배포 성공!!\n코드가 성공적으로 배포되었습니다 🚀"
         ]
 
         httpRequest(
