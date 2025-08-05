@@ -10,6 +10,7 @@ pipeline {
     SSH_KEY_ID = "enkins-todo-frontend-key"
     PROJECT_DIR = "/home/ubuntu/apps"
     FRONTEND_DIR = "$PROJECT_DIR/todo-frontend"
+    SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
   }
 
   stages {
@@ -58,26 +59,45 @@ pipeline {
   post {
     success {
       script {
-        def slackWebhookUrl = 'https://hooks.slack.com/services/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'
-        def payload = '{"text":"✅ todo-frontend 빌드 & 배포 성공!"}'
+        def payload = """{
+          "attachments": [
+            {
+              "color": "good",
+              "title": "✅ todo-frontend 배포 성공!",
+              "text": "코드가 성공적으로 배포되었습니다 🚀",
+              "footer": "Jenkins",
+              "ts": ${System.currentTimeMillis() / 1000}
+            }
+          ]
+        }"""
 
         httpRequest httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: payload,
-                    url: slackWebhookUrl
+                    url: 'https://hooks.slack.com/services/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'
       }
     }
 
     failure {
       script {
-        def slackWebhookUrl = 'https://hooks.slack.com/services/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'
-        def payload = '{"text":"❌ todo-frontend 빌드 실패 😭"}'
+        def payload = """{
+          "attachments": [
+            {
+              "color": "danger",
+              "title": "❌ todo-frontend 배포 실패!",
+              "text": "배포 중 문제가 발생했습니다. 콘솔 로그를 확인하세요.",
+              "footer": "Jenkins",
+              "ts": ${System.currentTimeMillis() / 1000}
+            }
+          ]
+        }"""
 
         httpRequest httpMode: 'POST',
                     contentType: 'APPLICATION_JSON',
                     requestBody: payload,
-                    url: slackWebhookUrl
+                    url: 'https://hooks.slack.com/services/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'
       }
     }
   }
 }
+
