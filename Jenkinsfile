@@ -22,7 +22,7 @@ pipeline {
           sh """
             ssh -o StrictHostKeyChecking=no $SSH_TARGET '
               cd $FRONTEND_DIR &&
-              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작" &&
+              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작123" &&
               npm install &&
               npm run lint || exit 1
             '
