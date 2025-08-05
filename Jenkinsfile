@@ -10,7 +10,7 @@ pipeline {
     SSH_KEY_ID = "enkins-todo-frontend-key"
     PROJECT_DIR = "/home/ubuntu/apps"
     FRONTEND_DIR = "$PROJECT_DIR/todo-frontend"
-    SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
+    SLACK_WEBHOOK = credentials('SLACK_WEBHOOK')
   }
 
   stages {
