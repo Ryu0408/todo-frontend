@@ -10,7 +10,7 @@ pipeline {
     SSH_KEY_ID = "enkins-todo-frontend-key"
     PROJECT_DIR = "/home/ubuntu/apps"
     FRONTEND_DIR = "$PROJECT_DIR/todo-frontend"
-    SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
+    SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
   }
 
   stages {
@@ -20,7 +20,7 @@ pipeline {
           sh """
             ssh -o StrictHostKeyChecking=no $SSH_TARGET '
               cd $FRONTEND_DIR &&
-              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작123" &&
+              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작악" &&
               npm install &&
               npm run lint || exit 1
             '
