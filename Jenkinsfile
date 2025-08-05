@@ -54,4 +54,30 @@ pipeline {
       }
     }
   }
+
+  post {
+    success {
+      script {
+        def slackWebhookUrl = 'https://hooks.slack.com/services/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'
+        def payload = '{"text":"✅ todo-frontend 빌드 & 배포 성공!"}'
+
+        httpRequest httpMode: 'POST',
+                    contentType: 'APPLICATION_JSON',
+                    requestBody: payload,
+                    url: slackWebhookUrl
+      }
+    }
+
+    failure {
+      script {
+        def slackWebhookUrl = 'https://hooks.slack.com/services/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'
+        def payload = '{"text":"❌ todo-frontend 빌드 실패 😭"}'
+
+        httpRequest httpMode: 'POST',
+                    contentType: 'APPLICATION_JSON',
+                    requestBody: payload,
+                    url: slackWebhookUrl
+      }
+    }
+  }
 }
