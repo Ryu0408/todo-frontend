@@ -20,7 +20,7 @@ pipeline {
           sh """
             ssh -o StrictHostKeyChecking=no $SSH_TARGET '
               cd $FRONTEND_DIR &&
-              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작" &&
+              echo "[🔍] 프론트 의존성 설치 & 린트 검사 시작123" &&
               npm install &&
               npm run lint || exit 1
             '
@@ -71,10 +71,14 @@ pipeline {
           ]
         }"""
 
-        httpRequest httpMode: 'POST',
-                    contentType: 'APPLICATION_JSON',
-                    requestBody: payload,
-                    url: 'https://hooks.slack.com/services/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'
+        httpRequest(
+          httpMode: 'POST',
+          contentType: 'APPLICATION_JSON',
+          customHeaders: [[name: 'User-Agent', value: 'curl/7.68.0']],
+          validResponseCodes: '100:599',
+          requestBody: payload,
+          url: "${env.SLACK_WEBHOOK}"
+        )
       }
     }
 
@@ -92,12 +96,15 @@ pipeline {
           ]
         }"""
 
-        httpRequest httpMode: 'POST',
-                    contentType: 'APPLICATION_JSON',
-                    requestBody: payload,
-                    url: 'https://hooks.slack.com/services/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'
+        httpRequest(
+          httpMode: 'POST',
+          contentType: 'APPLICATION_JSON',
+          customHeaders: [[name: 'User-Agent', value: 'curl/7.68.0']],
+          validResponseCodes: '100:599',
+          requestBody: payload,
+          url: "${env.SLACK_WEBHOOK}"
+        )
       }
     }
   }
 }
-
