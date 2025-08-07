@@ -43,11 +43,11 @@ pipeline {
               echo "[2] 📦 docker-compose 실행 디렉토리 이동"
               cd $PROJECT_DIR
 
-              echo "[3] 🛠️ docker-compose build frontend (캐시 무시)"
-              docker-compose build --no-cache frontend  # 캐시 무시하고 빌드
+              echo "[3] 🛠️ docker-compose down (기존 컨테이너 종료)"
+              docker-compose down  # 기존 컨테이너 중지 및 삭제
 
-              echo "[4] ♻️ docker-compose restart frontend"
-              docker-compose restart frontend  # 특정 서비스만 재시작
+              echo "[4] 🏗️ docker-compose up -d --build (새로 빌드하여 실행)"
+              docker-compose up -d --build  # 새 이미지를 빌드하고 컨테이너 실행
             '
           """
         }
