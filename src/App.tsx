@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>백엔드 이미지 업로드 테스트</h1>
+        <h1>S3 이미지 업로드 테스트</h1>
         <input type="file" onChange={handleFileChange} />
         <button onClick={handleFileUpload}>업로드</button>
         <p>{uploadMessage}</p>
