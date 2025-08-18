@@ -22,7 +22,7 @@ function App() {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('https://www.ryu-todo.com/api/upload', {
+      const response = await fetch('https://ryu-todo.com/api/upload', {
         method: 'POST',
         body: formData,
       });
