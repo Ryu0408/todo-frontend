@@ -42,35 +42,47 @@
 }
 
 .stack-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 고정 */
+  gap: 1rem; /* 아이템 간격 조금 넓힘 */
+  justify-items: center; /* 가운데 정렬 */
 }
 
 .stack-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90px;
 }
 
 .icon-circle {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background-color: white;
-  border: 1px solid #ddd;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s;
+  transition: transform 0.2s ease;
 }
 
 .icon-circle:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
+}
+
+.icon-circle img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+/* 아이콘 없을 때 대체 배지 */
+.letter-badge {
+  font-size: 20px;
+  font-weight: 700;
+  color: #555;
 }
 
 .icon-label {
@@ -78,4 +90,6 @@
   font-size: 0.85rem;
   font-weight: 500;
   color: #444;
+  line-height: 1.2;
+  word-break: keep-all;
 }
