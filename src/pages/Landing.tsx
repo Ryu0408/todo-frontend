@@ -5,14 +5,6 @@ import './Landing.css';
 
 const projects = [
   {
-    id: 'ryuflix',
-    title: "RYUFLIX – AI 추천 기반 영화 검색 플랫폼",
-    description: "개인 맞춤형 AI 추천을 통해 원하는 영화를 찾아주는 초개인화 영화 검색 플랫폼",
-    url: "https://reco-client-nu.vercel.app/",
-    icon: "🎬",
-    details: true
-  },
-  {
     id: 'ambience-erp',
     title: "Ambience 전사 ERP 시스템",
     description: "본사, 백화점, 시공사, 거래처, 헬스케어 등 Ambience의 모든 사업영역을 아우르는 전사 통합 운영 플랫폼",
@@ -130,6 +122,7 @@ const projects = [
 export default function Landing() {
   const [isImageOpen, setIsImageOpen] = useState(false);
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const openModal = (id: string) => setModalProjectId(id);
   const closeModal = () => setModalProjectId(null);
@@ -137,13 +130,18 @@ export default function Landing() {
     <main className="scroll-smooth">
       {/* Top Navigation */}
       <nav className="top-nav">
-        <ul>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#stack">Tech Stack</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div className="nav-container">
+          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
+          <ul className={`menu ${menuOpen ? "open" : ""}`}>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#stack">Tech Stack</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
       </nav>
 
       {/* Hero */}
@@ -172,7 +170,9 @@ export default function Landing() {
             <li><span className="year">2016~2018</span><p className="event">네이버웹툰 (서버 개발팀)</p></li>
             <li><span className="year">2019~2021</span><p className="event">폭스바겐그룹코리아 (개발팀)</p></li>
             <li><span className="year">2021~2022</span><p className="event">미리해봐 (백엔드 개발팀)</p></li>
-            <li><span className="year">2022~Now</span><p className="event">앰비언스 (CTO)</p></li>
+            <li><span className="year">2022~2025</span><p className="event">앰비언스 (CTO)</p></li>
+            <li><span className="year">2025~Now</span><p className="event">사랑모아 금융서비스 (백엔드 개발팀)</p></li>
+
           </ul>
         </div>
       </section>
@@ -197,15 +197,18 @@ export default function Landing() {
           </p>
 
           <p className="paragraph">
-            육군 장교로 복무하며 전략적 사고와 리더십을 다졌고, 
-            네이버웹툰, 폭스바겐그룹코리아, 미리해봐, 그리고 현재 재직 중인 앰비언스에서 
-            풀스택 개발자 및 팀 리더, CTO로 활동하며 기술 기반의 성장을 리딩해왔습니다.
+            육군 장교로 복무하며 전략적 사고를 다졌고, 
+            네이버웹툰, 폭스바겐그룹코리아, 미리해봐, 앰비언스를 거쳐 
+            현재는 <strong>(주)사랑모아금융서비스</strong>에서 
+            풀스택 개발자로 근무하며 기술 기반의 성장을 이어가고 있습니다.
           </p>
 
           <p className="paragraph">
             특히 앰비언스에서는 ERP, AI 조명 추천 플랫폼, 헬스케어 SaaS, 브랜드 폐쇄몰 등 
-            <strong> 전사 운영을 아우르는 시스템 아키텍처를 제로베이스에서 직접 설계·개발</strong>하고 있으며, 
-            실질적인 매출 성장과 운영 효율화를 이끌었습니다.
+            <strong> 전사 운영을 아우르는 시스템 아키텍처를 제로베이스에서 직접 설계·개발</strong>하여 
+            실질적인 매출 성장과 운영 효율화를 이끌었습니다. 
+            현재 (주)사랑모아금융서비스에서도 이러한 경험을 바탕으로 
+            <strong>GA 영업 조직 운영 효율화와 디지털 전환</strong>을 위한 시스템을 개발하고 있습니다.
           </p>
 
           <p className="paragraph">
@@ -216,20 +219,22 @@ export default function Landing() {
 
           <p className="paragraph">
             실무에서는 기획자·디자이너·운영팀과의 협업뿐 아니라 
-            일정 관리, 예산 배분, 기술 검증, 운영 최적화까지 책임지는 
-            <strong>End-to-End Ownership</strong>을 실현해왔고, 
+            일정 관리, 예산 반영, 기술 검증, 운영 최적화까지 폭넓게 경험하며 
             언제나 '믿고 맡기는 개발자'로서 평가받아 왔습니다.
           </p>
 
           <p className="paragraph">
-            현재 저는 앰비언스에서 CTO이자 본부장으로서, 
-            회사의 전략 방향과 기술 구조를 연결하는 중간다리 역할을 수행하고 있습니다.
+            현재 저는 <strong>(주)사랑모아금융서비스</strong>에서 
+            GA사업을 지원하는 시스템 개발을 담당하며, 
+            회사의 영업 방향성과 IT 구조를 연결하는 역할을 수행하고 있습니다. 
             기술과 비즈니스의 간극을 메우는 사람이 바로 제가 되고자 하는 개발자상입니다.
           </p>
 
           <p className="quote">“기술은 수단일 뿐, 목적은 비즈니스 임팩트입니다.”</p>
         </div>
       </section>
+
+
 
       {/* Tech Stack */}
       <TechStack />
@@ -270,33 +275,7 @@ export default function Landing() {
           </div>
         </div>
       </section>
-      <ProjectModal
-        isOpen={modalProjectId === 'ryuflix'}
-        onClose={closeModal}
-        title="RYUFLIX – AI 추천 기반 영화 검색 플랫폼(개인 프로젝트)"
-        description="당신만을 위한 영화를 AI가 찾아드립니다. 취향 분석 기반으로 영화 추천을 제공하는 초개인화 영화 탐색 웹앱입니다."
-        features={[
-          "▶ 주요 컨셉",
-          "사용자의 선호 장르, 분위기, 키워드를 기반으로 AI가 영화 추천",
-          "검색이 아닌 '발견'에 초점을 둔 영화 경험 제공",
-          "▶ 현재 구현 내용 (MVP 단계)",
-          "이메일 입력 후 시작 → 추천 흐름 기획 중",
-          "다크톤 시네마 UI + 몰입감 있는 UX 기반 설계",
-          "로그인 버튼, 에러 메시지 등 기본 폼 기능 구현",
-          "▶ 추후 계획",
-          "GPT 또는 추천 알고리즘 연동",
-          "리뷰 감정 분석 + 유사 영화 벡터 매칭",
-          "사용자 북마크/리스트 저장 기능",
-          "장르별 추천 / 무ood 기반 영화 탐색",
-          "▶ 디자인 요소",
-          "전체 배경을 영화관 느낌의 다크톤 테마로 설계",
-          "시네마틱한 인터랙션 + 선명한 레드 CTA로 집중 유도",
-          "▶ 프로젝트 링크",
-          "https://reco-client-nu.vercel.app/"
-        ]}
-        link="https://reco-client-nu.vercel.app/"
-        icon="🎬"
-      />
+      {/* Projects */}
       <ProjectModal
         isOpen={modalProjectId === 'ambience-erp'}
         onClose={closeModal}

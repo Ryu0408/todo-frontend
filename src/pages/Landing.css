@@ -13,6 +13,15 @@ html {
   z-index: 1000;
 }
 
+/* 컨테이너 + 로고(옵션) */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 데스크톱 메뉴 기본 */
+.top-nav .menu,
 .top-nav ul {
   margin: 0 auto;
   display: flex;
@@ -21,6 +30,7 @@ html {
   list-style: none;
 }
 
+.top-nav .menu a,
 .top-nav a {
   color: white;
   text-decoration: none;
@@ -28,8 +38,78 @@ html {
   transition: color 0.3s ease;
 }
 
+.top-nav .menu a:hover,
 .top-nav a:hover {
   color: #e50914;
+}
+
+/* 햄버거 버튼 (모바일 전용) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+}
+
+/* 드롭다운 애니메이션 */
+@keyframes menuSlideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================
+   모바일 레이아웃 (햄버거 전환)
+   =================================== */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  /* 데스크톱용 가로 배치 숨김 */
+  .top-nav .menu,
+  .top-nav ul {
+    position: absolute;
+    top: 60px;        /* nav 높이만큼 아래 */
+    left: 0;
+    right: 0;
+    display: none;    /* 기본 닫힘 */
+    flex-direction: column;
+    gap: 0;
+    padding: 0.75rem 1.25rem;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(4px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  }
+
+  /* 열렸을 때 */
+  .top-nav .menu.open,
+  .top-nav ul.open {
+    display: flex;
+    animation: menuSlideDown 160ms ease-out both;
+  }
+
+  /* 항목 스타일(모바일) */
+  .top-nav .menu li,
+  .top-nav ul li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .top-nav .menu li:last-child,
+  .top-nav ul li:last-child {
+    border-bottom: none;
+  }
+
+  .top-nav .menu a,
+  .top-nav a {
+    display: block;
+    padding: 0.875rem 0.25rem;
+    font-weight: 600;
+  }
 }
 
 /* Hero 2-Column Layout */
@@ -75,12 +155,12 @@ html {
   margin-bottom: 1.5rem;
   border: 3px solid #e50914;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  cursor: pointer;           /* ✅ 손가락 커서로 변경 */
+  cursor: pointer;           /* 손가락 커서 */
   transition: transform 0.2s ease;
 }
 
 .profile-image:hover {
-  transform: scale(1.03);    /* ✅ 살짝 확대 느낌 */
+  transform: scale(1.03);    /* 살짝 확대 */
 }
 
 /* 이미지 확대용 오버레이 */
@@ -130,7 +210,6 @@ html {
 .close-btn:hover {
   background: #b20710;
 }
-
 
 /* Hero Text */
 .hero-title {
@@ -309,7 +388,6 @@ html {
   line-height: 1.6;
   color: #555;
 }
-
 
 /* Tech Stack */
 .stack-section {
