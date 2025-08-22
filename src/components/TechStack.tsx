@@ -171,7 +171,7 @@ const iconMap: Record<string, string> = {
 
   // Infra
   "AWS Lambda": "/icons/stacks/AWS-Lambda-icon.svg",
-  "AWS Route 53": "/icons/stacks/AWS-Route-53-icon.svg",
+  "AWS Route 53": "/icons/stacks/AWS-Route53-icon.svg",
   "AWS S3": "/icons/stacks/AWS-S3-icon.svg",
   "AWS EC2": "/icons/stacks/AWS-EC2-icon.svg",
   "AWS RDS": "/icons/stacks/AWS-RDS-icon.svg",
